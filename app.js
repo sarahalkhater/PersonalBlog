@@ -57,9 +57,7 @@ const path = require('path');
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require('method-override');
-// const postController = require(path.resolve(__dirname, 'controller/postsController'));
 const postController = require('./controller/postsController');
-// const pageController = require(path.resolve(__dirname, 'controller/pagesController'));
 const pageController = require('./controller/pagesController');
 const expressHandlebars = require('express-handlebars');
 
@@ -68,17 +66,11 @@ app.engine('handlebars', expressHandlebars.engine());
 app.set('view engine', 'handlebars');
 
 //connect DB
-// mongoose.connect("mongodb://localhost:27017/sarah-test-db", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false,
-// });
-
 mongoose.connect(
-    "mongodb://localhost:27017/sarah-test-db",
-    async(err)=>{
-        if(err) throw err;
-        console.log("conncted to db")
+    "mongodb+srv://sarahalkhater:Sa.123456@cluster0.trtmf.mongodb.net/personalBlog?retryWrites=true&w=majority",
+    async (err) => {
+        if (err) throw err;
+        console.log("connected to db");
     }
 )
 
@@ -86,16 +78,17 @@ mongoose.connect(
 app.use(express.static("public")); //kullanicinin erisebilecegi klasoru belirttik
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  methodOverride('_method', {
-    methods: ['POST', 'GET'],
-  })
-);
+
+// app.use(
+//   methodOverride('_method', {
+//     methods: ['POST', 'GET'],
+//   })
+// );
 
 //Routes
 app.get('/', postController.getAllPosts);
 app.get('/posts/:id', postController.getPost);
-app.post('/posts', postController.createPost);
+app.post('/createPost', postController.createPost);
 app.put('/posts/:id', postController.updatePost);
 app.delete('/posts/:id', postController.deletePost);
 
@@ -106,5 +99,5 @@ app.get("/addpost", pageController.getAddPage);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
+    console.log(`App listening on port ${port}`)
 });
