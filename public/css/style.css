@@ -617,7 +617,7 @@ BLOG SECTION
 ============================== */
 
 .page-image-blog {
-    background: linear-gradient( rgba(20, 20, 20, .8), rgba(20, 20, 20, .8)), url("../img/blogBG.jpg");
+    background: linear-gradient( rgba(20, 20, 20, .8), rgba(20, 20, 20, .8)), url("../img/blog.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
     background-position: center;
@@ -629,6 +629,10 @@ BLOG SECTION
     background-color: #fff;
     margin: 15px 0px;
     
+}
+
+.blog_content{
+    background-color: rgb(211,211,211);
 }
 
 .blog .blog-content {

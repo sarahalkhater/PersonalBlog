@@ -1,33 +1,41 @@
-const Post = require("../models/postModel");
+const postModel = require("../models/postModel");
 
 exports.getAllPosts = async (req, res) => {
-    const posts = await Post.find({}).sort("-dateCreated");
+    const data = await postModel.find({}).lean().sort("-dateCreated");
     res.render("index", {
-        //posts,
+        posts: data
     });
+
+    // postModel.find({}).lean()
+    //     // execute query
+    //     .exec(function (error, body) {          
+    //         res.render("index", { posts: body });
+    //     });
 };
 
 exports.getPost = async (req, res) => {
-    const post = await Post.findById(req.params.id);
+    const post = await postModel.findById(req.params.id).lean();    
     res.render("post", {
-        post,
+        post
     });
 };
 
 exports.createPost = async (req, res) => {
-    await Post.create(req.body);
+    await postModel.create(req.body);
     res.redirect("/");
 };
 
 exports.updatePost = async (req, res) => {
-    const post = await Post.findOne({ _id: req.params.id });
+    const post = await postModel.findOne({ _id: req.params.id });
     post.title = req.body.title;
+    post.userName = req.body.userName;
     post.detail = req.body.detail;
+    post.dateUpdated = Date.now;
     post.save();
     res.redirect(`/posts/${req.params.id}`);
 };
 
 exports.deletePost = async (req, res) => {
-    await Post.findByIdAndRemove(req.params.id);
+    await postModel.findByIdAndRemove(req.params.id);
     res.redirect("/");
 };

@@ -9,24 +9,21 @@
             <main id="main">
                 <div class="blog">
                     <div class="blog-img">
-                        <img class="img-fluid" src="./img/blog-post.jpg" alt="">
+                        <img class="img-fluid" src="./img/post.jpg" alt="">
                     </div>
                     <div class="blog-content">
                         <ul class="blog-meta">
-                            <li><i class="fas fa-user"></i>John Doe</li>
-                            <li><i class="fas fa-clock"></i>18 Oct</li>
-                            <li><i class="fas fa-comments"></i>57</li>
+                            <li><i class="fas fa-user"></i>{{post.userName}}</li>
+                            <li><i class="fas fa-clock"></i>{{dateFormat post.dateCreated "DD MMM YYYY"}}</li>
+
                         </ul>
-                        <h3>Morbi mattis felis at nunc. Duis viverra</h3>
-                        <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                            ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
-                            nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-                            augue. Curabitur ullamcorper ultricies nisi.</p>
+                        <h3>{{this.title}}</h3>
+                        <p>{{this.detail}}</p>
                     </div>
 
 
                     <!-- blog comments -->
-                    <div class="blog-comments">
+                    {{!-- <div class="blog-comments">
                         <h3>(1) Comments</h3>
 
                         <!-- comment -->
@@ -39,11 +36,11 @@
                         </div>
                         <!-- /comment -->
 
-                    </div>
+                    </div> --}}
                     <!-- /blog comments -->
 
                     <!-- reply form -->
-                    <div class="reply-form">
+                    {{!-- <div class="reply-form">
                         <h3>Leave A Comment</h3>
                         <form>
                             <input class="form-control mb-4" type="text" placeholder="Name">
@@ -52,8 +49,17 @@
 
                             <button type="submit" class="main-btn">Submit</button>
                         </form>
-                    </div>
+                    </div> --}}
                     <!-- /reply form -->
+
+                    <div class="clearfix">
+
+                        <a class="btn btn-danger float-right" href="/posts/{{post._id}}?_method=DELETE"
+                            onclick="return confirm('ARE YOU SURE?')">Delete Post</a>
+                        <a class="btn btn-warning float-right text-white mr-3" href="/posts/edit/{{post._id}}">Update
+                            Post</a>
+
+                    </div>
                 </div>
             </main>
             <!-- /Main -->
