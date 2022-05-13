@@ -9,7 +9,6 @@
                 <div class="row">
 
                     {{#each posts}}
-                    {{!-- <li>{{this}} ----- {{this.detail}}</li> --}}
                     <div class="col-md-6">
                         <div class="blog">
                             <div class="blog-img">
@@ -22,7 +21,7 @@
                                 </ul>
                                 <h3>{{this.title}}</h3>
                                 <p>{{ trimString this.detail }}</p>
-                                <a href="/posts/{{this._id}}">Read More</a>
+                                <a href="/posts/{{ this._id }}">Read More</a>
                             </div>
                         </div>
                     </div>

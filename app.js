@@ -29,7 +29,7 @@ app.set('view engine', 'handlebars');
 
 //connect DB
 mongoose.connect(
-    //"mongodb://localhost:27017/sarah-test-db",
+    //"mongodb://localhost:27017/test-db",
     "mongodb+srv://sarahalkhater:Sa.123456@cluster0.trtmf.mongodb.net/personalBlog?retryWrites=true&w=majority",
     async (err) => {
         if (err) throw err;
@@ -48,6 +48,7 @@ app.use(
     })
 );
 
+const router = express.Router();
 //Routes
 app.get('/', postController.getAllPosts);
 app.get('/posts/:id', postController.getPost);

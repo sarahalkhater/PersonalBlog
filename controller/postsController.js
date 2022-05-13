@@ -5,18 +5,12 @@ exports.getAllPosts = async (req, res) => {
     res.render("index", {
         posts: data
     });
-
-    // postModel.find({}).lean()
-    //     // execute query
-    //     .exec(function (error, body) {          
-    //         res.render("index", { posts: body });
-    //     });
 };
 
 exports.getPost = async (req, res) => {
-    const post = await postModel.findById(req.params.id).lean();    
+    const post = await postModel.findById(req.params.id).lean();
     res.render("post", {
-        post
+        post: post
     });
 };
 
@@ -26,7 +20,7 @@ exports.createPost = async (req, res) => {
 };
 
 exports.updatePost = async (req, res) => {
-    const post = await postModel.findOne({ _id: req.params.id });
+    const post = await postModel.findOne({ _id: req.params.id }).lean();
     post.title = req.body.title;
     post.userName = req.body.userName;
     post.detail = req.body.detail;
@@ -36,6 +30,6 @@ exports.updatePost = async (req, res) => {
 };
 
 exports.deletePost = async (req, res) => {
-    await postModel.findByIdAndRemove(req.params.id);
+    await postModel.findByIdAndRemove(req.params.id).lean();
     res.redirect("/");
 };
