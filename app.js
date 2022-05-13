@@ -57,7 +57,7 @@ app.delete('/posts/:id', postController.deletePost);
 
 app.get('/posts/edit/:id', pageController.getEditPage);
 app.get("/about", pageController.getAboutPage);
-app.get("/addpost", pageController.getAddPage);
+app.get("/addPost", pageController.getAddPage);
 
 
 const port = process.env.PORT || 8080;
